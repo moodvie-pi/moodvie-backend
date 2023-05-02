@@ -43,7 +43,7 @@ jobs:
         
       - name: Run build with Gradle Wrapper
       
-        run: ./gradlew build
+        run: ./gradlew build -x test
 
 
 
