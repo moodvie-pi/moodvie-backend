@@ -20,10 +20,6 @@ jobs:
 
     runs-on: windows-latest
 
-    defaults:
-      run:
-        working-directory: ./react
-
     steps:
 
       - uses: actions/checkout@v2
@@ -40,13 +36,13 @@ jobs:
 
 
       - name: Setup Gradle
-      
-        uses: gradle/gradle-build-action@v2
-        
-      - name: Run build with Gradle Wrapper
-      
-        run: ./gradlew build -x test
 
+        uses: gradle/gradle-build-action@v2
+
+
+      - name: Run build with Gradle Wrapper
+
+        run: ./gradlew build -x test
 
 
       - name: Upload artifact for deployment job
@@ -57,7 +53,7 @@ jobs:
 
           name: java-app
 
-          path: '${{ github.workspace }}/target/*.jar'
+          path: '${{ github.workspace }}\build\libs\*.jar'
 
 
 
@@ -85,20 +81,22 @@ jobs:
 
           name: java-app
 
-
-
-      - name: Deploy to Azure Web App
-
-        id: deploy-to-webapp
-
-        uses: azure/webapps-deploy@v2
-
+      - uses: azure/webapps-deploy@v2
         with:
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
 
-          app-name: 'moodvie-spring-api'
+#       - name: Deploy to Azure Web App
 
-          slot-name: 'production'
+#         id: deploy-to-webapp
 
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_3f935389fcee452abbd9dfa6f71ce03a }}
+#         uses: azure/webapps-deploy@v2
 
-          package: '*.jar'
+#         with:
+
+#           app-name: 'moodvie-spring-api'
+
+#           slot-name: 'production'
+
+#           publish-profile: ${{ secrets.AzureAppService_PublishProfile_3f935389fcee452abbd9dfa6f71ce03a }}
+
+#           package: '*.jar'
