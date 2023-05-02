@@ -53,7 +53,7 @@ jobs:
 
           name: java-app
 
-          path: '${{ github.workspace }}\build\java-app.jar'
+          path: '${{ github.workspace }}\build\*.jar'
 
 
 
