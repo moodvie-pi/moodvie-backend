@@ -42,6 +42,10 @@ jobs:
       - name: Run build with Gradle Wrapper
       
         run: ./gradlew build -x test
+        
+      - name: Teste
+      
+        run: dir
 
 
 
