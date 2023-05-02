@@ -80,26 +80,23 @@ jobs:
         with:
 
           name: java-app
-          
-      - name: 'Az CLI login'
-        uses: azure/login@v1
+
+      - uses: azure/webapps-deploy@v2
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           
-      - name: Deploy to Azure Web App
+#       - name: Deploy to Azure Web App
 
-        id: deploy-to-webapp
+#         id: deploy-to-webapp
 
-        uses: azure/webapps-deploy@v2
+#         uses: azure/webapps-deploy@v2
 
-        with:
+#         with:
 
-          app-name: 'moodvie-spring-api'
+#           app-name: 'moodvie-spring-api'
 
-          slot-name: 'production'
+#           slot-name: 'production'
 
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_3f935389fcee452abbd9dfa6f71ce03a }}
+#           publish-profile: ${{ secrets.AzureAppService_PublishProfile_3f935389fcee452abbd9dfa6f71ce03a }}
 
-          package: '*.jar'
+#           package: '*.jar'
