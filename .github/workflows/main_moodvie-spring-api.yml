@@ -45,6 +45,10 @@ jobs:
         
       - name: Teste
       
+        run: cd build
+        
+      - name: Teste
+      
         run: dir
 
 
