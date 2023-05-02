@@ -55,7 +55,7 @@ jobs:
 
           name: java-app
 
-          path: '${{ github.workspace }}/target/*.jar'
+          path: '${{ github.workspace }}/target/java-app.jar'
 
 
 
@@ -99,4 +99,4 @@ jobs:
 
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_3f935389fcee452abbd9dfa6f71ce03a }}
 
-          package: '*.jar'
+          package: 'java-app.jar'
