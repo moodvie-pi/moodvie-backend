@@ -19,10 +19,6 @@ jobs:
   build:
 
     runs-on: windows-latest
-    defaults:
-      run:
-        working-directory: .\\target
-
 
     steps:
 
@@ -57,7 +53,7 @@ jobs:
 
           name: java-app
 
-          path: '${{ github.workspace }}/target/java-app.jar'
+          path: '${{ github.workspace }}/java-app.jar'
 
 
 
