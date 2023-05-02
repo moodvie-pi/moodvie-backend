@@ -20,7 +20,9 @@ jobs:
 
     runs-on: windows-latest
 
-
+    defaults:
+      run:
+        working-directory: ./react
 
     steps:
 
