@@ -40,7 +40,8 @@ public class SecurityConfigurations {
                                 "https://moodvie-frontend-xc63-git-main-iurihenriq.vercel.app",
                                 "https://moodvie-frontend-xc63.vercel.app",
                                 "https://moodvie.com.br",
-                                "https://moodvie-frontend-xc63-iurihenriq.vercel.app"
+                                "https://moodvie-frontend-xc63-iurihenriq.vercel.app",
+                                "https://moodvie-spring-api.azurewebsites.net"
                         )
                         .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
             };
