@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfigurations {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        return http.cors().and().csrf().disable()
+        return http.cors().disable().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_FORBIDDEN,"Não autorizado"))
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
