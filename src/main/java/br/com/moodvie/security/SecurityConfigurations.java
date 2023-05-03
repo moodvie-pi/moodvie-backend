@@ -11,6 +11,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -24,6 +26,26 @@ public class SecurityConfigurations {
                 .and().build();
     }
 
+    @Bean
+    public WebMvcConfigurer corsConfigurer(){
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry
+                        .addMapping("/**")
+                        .allowedHeaders("Authorization", "Cache-Control", "Content-Type","Executor-Token","AuthorizationLDAP")
+                        .allowedOrigins(
+                                "http://localhost:4200",
+                                "http://localhost:8080",
+                                "https://moodvie-frontend-xc63-git-main-iurihenriq.vercel.app",
+                                "https://moodvie-frontend-xc63.vercel.app",
+                                "https://moodvie.com.br",
+                                "https://moodvie-frontend-xc63-iurihenriq.vercel.app"
+                        )
+                        .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
+            };
+        };
+    }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
