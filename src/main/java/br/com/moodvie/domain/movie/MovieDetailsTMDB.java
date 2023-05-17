@@ -1,8 +1,19 @@
 package br.com.moodvie.domain.movie;
 
+import br.com.moodvie.domain.movie.watchproviders.WatchProviders;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Date;
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class MovieDetailsTMDB {
     Boolean adult;
     String backdrop_path;
@@ -27,8 +38,8 @@ public class MovieDetailsTMDB {
 
     String status;
 
-    //WatchProviders watch/providers;
-
+    @JsonProperty("watch/providers")
+    WatchProviders watchProviders;
 }
 
 //{

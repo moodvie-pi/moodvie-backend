@@ -2,6 +2,7 @@ package br.com.moodvie.repository;
 
 import br.com.moodvie.domain.movie.MovieTMDB;
 import br.com.moodvie.domain.movie.TMDBResponse;
+import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -31,7 +32,7 @@ public class TMDBRepository {
         return response.getBody();
     }
 
-    public Object findTMDBDetails(Integer movieId,String lang){
+    public Object findTMDBDetails(Integer movieId, String lang){
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
