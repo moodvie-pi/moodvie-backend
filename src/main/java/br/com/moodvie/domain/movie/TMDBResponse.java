@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 public class TMDBResponse {
     Integer page;
-    List<MovieTMDB> results;
+    List<ContentTMDB> results;
     Integer total_pages;
     Integer total_results;
 }

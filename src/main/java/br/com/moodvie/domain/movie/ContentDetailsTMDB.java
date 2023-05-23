@@ -14,19 +14,22 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class MovieDetailsTMDB {
+public class ContentDetailsTMDB {
     Boolean adult;
     String backdrop_path;
     Integer id;
     String title;
+    String name;
     String original_language;
     String original_title;
+    String original_name;
     String overview;
     String poster_path;
     String media_type;
-    List<MovieGenreTMDB> genres;
+    List<GenreTMDB> genres;
     Double popularity;
     Date release_date;
+    Date first_air_date;
     Boolean video;
     Double vote_average;
     Double vote_count;

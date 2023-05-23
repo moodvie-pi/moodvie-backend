@@ -1,6 +1,7 @@
 package br.com.moodvie.controller;
 
-import br.com.moodvie.domain.movie.SimplifiedMovieTMDB;
+import br.com.moodvie.domain.movie.ContentDetailsTMDB;
+import br.com.moodvie.domain.movie.SimplifiedContentTMDB;
 import br.com.moodvie.domain.movie.TMDBResponse;
 import br.com.moodvie.services.TMDBService;
 import lombok.AllArgsConstructor;
@@ -19,20 +20,20 @@ public class TMDBController {
     private final TMDBService tmdbService;
 
     @ResponseBody
-    @GetMapping("/recommendations/{movieId}/{pageNumber}/{lang}")
-    ResponseEntity<TMDBResponse> getTMDBRecommendation(@PathVariable Integer movieId, @PathVariable Integer pageNumber, @PathVariable String lang){
-        return new ResponseEntity<>(tmdbService.getRecommendation(movieId,pageNumber,lang), HttpStatus.OK);
+    @GetMapping("/recommendations/{type}/{movieId}/{pageNumber}/{lang}")
+    ResponseEntity<TMDBResponse> getTMDBRecommendation(@PathVariable String type, @PathVariable Integer movieId, @PathVariable Integer pageNumber, @PathVariable String lang){
+        return new ResponseEntity<>(tmdbService.getRecommendation(type, movieId,pageNumber,lang), HttpStatus.OK);
     }
 
     @ResponseBody
-    @GetMapping("/details/{movieId}/{lang}")
-    ResponseEntity<Object> getMovieDetails(@PathVariable Integer movieId, @PathVariable String lang){
-        return new ResponseEntity<>(tmdbService.getMovieDetails(movieId,lang), HttpStatus.OK);
+    @GetMapping("/details/{type}/{movieId}/{lang}")
+    ResponseEntity<ContentDetailsTMDB> getContentDetails(@PathVariable String type, @PathVariable Integer movieId, @PathVariable String lang){
+        return new ResponseEntity<>(tmdbService.getMovieDetails(type, movieId,lang), HttpStatus.OK);
     }
 
     @ResponseBody
-    @GetMapping("/query/{lang}")
-    ResponseEntity<List<SimplifiedMovieTMDB>> findMovieByQuery(@PathVariable String lang, @Param("query") String query){
-        return new ResponseEntity<>(tmdbService.findMovieByQuery(lang,query), HttpStatus.OK);
+    @GetMapping("/query/{type}/{lang}")
+        ResponseEntity<List<SimplifiedContentTMDB>> findContentByQuery(@PathVariable String type, @PathVariable String lang, @Param("query") String query){
+        return new ResponseEntity<>(tmdbService.findMovieByQuery(type, lang, query), HttpStatus.OK);
     }
 }

@@ -10,10 +10,12 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SimplifiedMovieTMDB {
+public class SimplifiedContentTMDB {
     Boolean adult;
     String backdrop_path;
     Integer id;
     String title;
+    String name;
     Date release_date;
+    Date first_air_date;
 }
