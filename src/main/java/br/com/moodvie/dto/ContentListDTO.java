@@ -1,6 +1,7 @@
 package br.com.moodvie.dto;
 
 import br.com.moodvie.domain.contentList.ContentListTypes;
+import br.com.moodvie.domain.contentList.Types;
 import br.com.moodvie.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,5 +21,6 @@ public class ContentListDTO {
     @NotNull
     ContentListTypes listType;
     String listName;
-
+    @NotNull
+    Types type;
 }
