@@ -16,28 +16,28 @@ import java.util.List;
 public class TMDBRepository {
     @Value("${api.tmdb.key}")
     public String apiKey;
-    public TMDBResponse findTMDBrecommendations(Integer movieId,Integer pageNumber,String lang){
+    public TMDBResponse findTMDBrecommendations(String type, Integer movieId,Integer pageNumber,String lang){
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
         ResponseEntity<TMDBResponse> response =
-                restTemplate.exchange("https://api.themoviedb.org/3/movie/"+movieId+"/recommendations?api_key="+apiKey+
+                restTemplate.exchange("https://api.themoviedb.org/3/"+type+"/"+movieId+"/recommendations?api_key="+apiKey+
                                 "&language="+lang+"&append_to_response=videos,watch/providers&page="+pageNumber,
                         HttpMethod.GET, entity, new ParameterizedTypeReference<TMDBResponse>() {
                         });
         return response.getBody();
     }
 
-    public Object findTMDBDetails(Integer movieId, String lang){
+    public Object findTMDBDetails(String type, Integer movieId, String lang){
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
         ResponseEntity<Object> response =
-                restTemplate.exchange("https://api.themoviedb.org/3/movie/"+movieId+"?api_key="+apiKey+"&language="+lang+"&append_to_response=videos,watch/providers",
+                restTemplate.exchange("https://api.themoviedb.org/3/"+type+"/"+movieId+"?api_key="+apiKey+"&language="+lang+"&append_to_response=videos,watch/providers",
                         HttpMethod.GET, entity, new ParameterizedTypeReference<>() {
                         });
         return response.getBody();
@@ -45,7 +45,7 @@ public class TMDBRepository {
 
     //https://api.themoviedb.org/3/search/movie?api_key=###&query=the+avengers
 
-    public TMDBResponse findMovieByQuery(String lang,String query){
+    public TMDBResponse findMovieByQuery(String type, String lang,String query){
         query = query.replaceAll(" ","+");
         RestTemplate restTemplate = new RestTemplate();
 
@@ -53,7 +53,7 @@ public class TMDBRepository {
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
         ResponseEntity<TMDBResponse> response =
-                restTemplate.exchange("https://api.themoviedb.org/3/search/movie?api_key="+apiKey+"&language="+lang+"&query="+query,
+                restTemplate.exchange("https://api.themoviedb.org/3/search/"+type+"?api_key="+apiKey+"&language="+lang+"&query="+query,
                         HttpMethod.GET, entity, new ParameterizedTypeReference<TMDBResponse>() {
                         });
         return response.getBody();
