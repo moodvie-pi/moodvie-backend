@@ -1,0 +1,7 @@
+CREATE TABLE tblUsersList (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    idUser INTEGER NOT NULL,
+    idMovie INTEGER NOT NULL,
+    listName VARCHAR(255) NOT NULL,
+    FOREIGN KEY (idUser) REFERENCES tblusers(id)
+);
