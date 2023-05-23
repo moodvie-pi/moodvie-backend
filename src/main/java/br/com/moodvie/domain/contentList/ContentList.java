@@ -26,7 +26,7 @@ public class ContentList {
     private ContentListTypes listType;
     @Column(name = "listname")
     private String listName;
-    @Column(name = )
+//    @Column(name = )
 
     public ContentList convert(ContentListDTO contentListDTO) {
         return ContentList.builder()
