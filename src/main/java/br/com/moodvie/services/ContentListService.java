@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 public class ContentListService {
 
     private final ContentListRepository contentListRepository;
+    private final UserService userService;
 
-    public void create(User user, ContentListDTO contentListDTO) {
+    public void create( ContentListDTO contentListDTO) {
+        User user = userService.findLoggedUser();
         ContentList contentList = new ContentList();
         contentList = contentList.convert(contentListDTO);
         contentList.setUser(user);

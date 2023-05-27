@@ -1,0 +1,5 @@
+package br.com.moodvie.domain.mood;
+
+public enum MoodTypes {
+    HAPPY,SAD,ANGRY,ANXIOUS,NORMAL,BORED,LONELY,NOSTALGIC,IN_LOVE,THOUGHTFUL,EMOTIONAL,STRESSED_OUT,RELAXED
+}
