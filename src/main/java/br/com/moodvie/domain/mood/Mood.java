@@ -20,21 +20,12 @@ public class Mood {
     @ManyToOne
     @JoinColumn(name = "iduser")
     private User user;
-    @Column(name = "idmovie")
-    private Long idMovie;
+    @Column(name = "idcontent")
+    private Long contentId;
     @Enumerated(EnumType.STRING)
     @Column(name = "moodtype")
     private MoodTypes moodType;
     @Enumerated(EnumType.STRING)
     @Column(name = "contenttype")
     private Types contentType;
-
-    public static Mood convert(MoodDTO moodDTO, User user){
-        return Mood.builder()
-                .user(user)
-                .idMovie(moodDTO.idMovie())
-                .moodType(moodDTO.moodType())
-                .contentType(moodDTO.contentType())
-                .build();
-    }
 }

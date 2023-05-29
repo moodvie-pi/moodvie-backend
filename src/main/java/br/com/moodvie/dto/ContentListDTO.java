@@ -16,7 +16,7 @@ import jakarta.validation.constraints.NotNull;
 public class ContentListDTO {
 
     @NotNull
-    Long movieId;
+    Long contentId;
     @NotNull
     ContentListTypes listType;
     String listName;

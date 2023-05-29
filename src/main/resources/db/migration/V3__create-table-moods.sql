@@ -1,7 +1,7 @@
 CREATE TABLE tblMood (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     idUser INTEGER NOT NULL,
-    idMovie INTEGER NOT NULL,
+    idContent INTEGER NOT NULL,
     moodType VARCHAR(255) NOT NULL,
     contentType VARCHAR(255) NOT NULL,
     FOREIGN KEY (idUser) REFERENCES tblusers(id)

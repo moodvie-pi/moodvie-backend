@@ -19,8 +19,8 @@ public class ContentList {
     @ManyToOne
     @JoinColumn(name = "iduser")
     private User user;
-    @Column(name = "idmovie")
-    private Long idMovie;
+    @Column(name = "idcontent")
+    private Long contentId;
     @Enumerated(EnumType.STRING)
     @Column(name = "listtype")
     private ContentListTypes listType;
@@ -29,15 +29,5 @@ public class ContentList {
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private Types type;
-
-    public ContentList convert(ContentListDTO contentListDTO) {
-        return ContentList.builder()
-                .idMovie(contentListDTO.getMovieId())
-                .listType(contentListDTO.getListType())
-                .listName(contentListDTO.getListName())
-                .type(contentListDTO.getType())
-                .build();
-    }
-
 }
 

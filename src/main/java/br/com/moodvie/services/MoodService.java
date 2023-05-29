@@ -3,35 +3,33 @@ package br.com.moodvie.services;
 import br.com.moodvie.domain.mood.Mood;
 import br.com.moodvie.domain.user.User;
 import br.com.moodvie.dto.MoodDTO;
+import br.com.moodvie.mappers.MoodMapper;
 import br.com.moodvie.repository.MoodRepository;
-import br.com.moodvie.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @AllArgsConstructor
 @Service
 public class MoodService {
     private final MoodRepository moodRepository;
-    private final UserRepository userRepository;
     private final UserService userService;
+    private final MoodMapper moodMapper;
 
     public void create(MoodDTO moodDTO){
-        User user = this.userService.findLoggedUser();
-        Mood mood = Mood.convert(moodDTO,user);
+        User user = userService.findLoggedUser();
+        Mood mood = moodMapper.toEntity(moodDTO);
+        mood.setUser(user);
         this.moodRepository.save(mood);
     }
 
     public void updateMood(MoodDTO moodDTO){
-        User user = this.userService.findLoggedUser();
-        Mood newMood = Mood.convert(moodDTO,user);
-        this.moodRepository.findByTypeUserMood(newMood.getContentType(),newMood.getUser(),newMood.getMoodType()).ifPresentOrElse((oldMood)-> {
-            oldMood.setIdMovie(newMood.getIdMovie());
-            this.moodRepository.save(oldMood);
-        },()->{
-            this.moodRepository.save(newMood);
-        });
+        User user = userService.findLoggedUser();
+        Mood newMood = moodMapper.toEntity(moodDTO);
+        newMood.setUser(user);
+
+        moodRepository.findByTypeUserMood(newMood.getContentType(),newMood.getUser(),newMood.getMoodType()).ifPresentOrElse((oldMood)-> {
+            oldMood.setContentId(newMood.getContentId());
+            moodRepository.save(oldMood);
+        },()-> moodRepository.save(newMood));
     }
 }

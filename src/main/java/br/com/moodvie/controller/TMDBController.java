@@ -20,15 +20,15 @@ public class TMDBController {
     private final TMDBService tmdbService;
 
     @ResponseBody
-    @GetMapping("/recommendations/{type}/{movieId}/{pageNumber}/{lang}")
-    ResponseEntity<TMDBResponse> getTMDBRecommendation(@PathVariable String type, @PathVariable Integer movieId, @PathVariable Integer pageNumber, @PathVariable String lang){
-        return new ResponseEntity<>(tmdbService.getRecommendation(type, movieId,pageNumber,lang), HttpStatus.OK);
+    @GetMapping("/recommendations/{type}/{contentId}/{pageNumber}/{lang}")
+    ResponseEntity<TMDBResponse> getTMDBRecommendation(@PathVariable String type, @PathVariable Integer contentId, @PathVariable Integer pageNumber, @PathVariable String lang){
+        return new ResponseEntity<>(tmdbService.getRecommendation(type, contentId,pageNumber,lang), HttpStatus.OK);
     }
 
     @ResponseBody
-    @GetMapping("/details/{type}/{movieId}/{lang}")
-    ResponseEntity<ContentDetailsTMDB> getContentDetails(@PathVariable String type, @PathVariable Integer movieId, @PathVariable String lang){
-        return new ResponseEntity<>(tmdbService.getMovieDetails(type, movieId,lang), HttpStatus.OK);
+    @GetMapping("/details/{type}/{contentId}/{lang}")
+    ResponseEntity<ContentDetailsTMDB> getContentDetails(@PathVariable String type, @PathVariable Integer contentId, @PathVariable String lang){
+        return new ResponseEntity<>(tmdbService.getMovieDetails(type, contentId,lang), HttpStatus.OK);
     }
 
     @ResponseBody

@@ -18,12 +18,12 @@ import java.util.List;
 public class TMDBService {
     private final TMDBRepository tmdbRepository;
 
-    public TMDBResponse getRecommendation(String type, Integer movieId,Integer pageNumber,String lang){
-        return tmdbRepository.findTMDBrecommendations(type,movieId,pageNumber,lang);
+    public TMDBResponse getRecommendation(String type, Integer contentId,Integer pageNumber,String lang){
+        return tmdbRepository.findTMDBrecommendations(type,contentId,pageNumber,lang);
     }
 
-    public ContentDetailsTMDB getMovieDetails(String type, Integer movieId,String lang){
-        Object movieDetailsObject = tmdbRepository.findTMDBDetails(type,movieId,lang);
+    public ContentDetailsTMDB getMovieDetails(String type, Integer contentId,String lang){
+        Object movieDetailsObject = tmdbRepository.findTMDBDetails(type,contentId,lang);
         ContentDetailsTMDB movieDetails;
         try{
             ObjectMapper objectMapper =  new ObjectMapper();
