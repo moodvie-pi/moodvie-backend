@@ -21,19 +21,19 @@ public class TMDBController {
 
     @ResponseBody
     @GetMapping("/recommendations/{type}/{contentId}/{pageNumber}/{lang}")
-    ResponseEntity<TMDBResponse> getTMDBRecommendation(@PathVariable String type, @PathVariable Long contentId, @PathVariable Integer pageNumber, @PathVariable String lang){
-        return new ResponseEntity<>(tmdbService.getRecommendation(type, contentId,pageNumber,lang), HttpStatus.OK);
+    ResponseEntity<TMDBResponse> getTMDBRecommendation(@PathVariable String type, @PathVariable Long contentId, @PathVariable Integer pageNumber, @PathVariable String lang) {
+        return new ResponseEntity<>(tmdbService.getRecommendation(type, contentId, pageNumber, lang), HttpStatus.OK);
     }
 
     @ResponseBody
     @GetMapping("/details/{type}/{contentId}/{lang}")
-    ResponseEntity<ContentDetailsTMDB> getContentDetails(@PathVariable String type, @PathVariable Long contentId, @PathVariable String lang){
-        return new ResponseEntity<>(tmdbService.getMovieDetails(type, contentId,lang), HttpStatus.OK);
+    ResponseEntity<ContentDetailsTMDB> getContentDetails(@PathVariable String type, @PathVariable Long contentId, @PathVariable String lang) {
+        return new ResponseEntity<>(tmdbService.getMovieDetails(type, contentId, lang), HttpStatus.OK);
     }
 
     @ResponseBody
     @GetMapping("/query/{type}/{lang}")
-        ResponseEntity<List<SimplifiedContentTMDB>> findContentByQuery(@PathVariable String type, @PathVariable String lang, @Param("query") String query){
+    ResponseEntity<List<SimplifiedContentTMDB>> findContentByQuery(@PathVariable String type, @PathVariable String lang, @Param("query") String query) {
         return new ResponseEntity<>(tmdbService.findMovieByQuery(type, lang, query), HttpStatus.OK);
     }
 }
