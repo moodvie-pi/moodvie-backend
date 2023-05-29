@@ -46,14 +46,14 @@ public class SecurityConfigurations {
                         .addMapping("/**")
                         .allowedHeaders("Authorization", "Cache-Control", "Content-Type","Executor-Token","AuthorizationLDAP")
                         .allowedOrigins(
-                                "http://localhost:4200",
-                                "http://localhost:8080",
-                                "https://moodvie-frontend-xc63-git-main-iurihenriq.vercel.app",
-                                "https://moodvie-frontend-xc63.vercel.app",
-                                "https://www.moodvie.com.br",
-                                "https://moodvie.com.br",
-                                "https://moodvie-frontend-xc63-iurihenriq.vercel.app",
-                                "https://moodvie-spring-api.azurewebsites.net"
+                                "http://localhost:4200/",
+                                "http://localhost:8080/",
+                                "https://moodvie-frontend-xc63-git-main-iurihenriq.vercel.app/",
+                                "https://moodvie-frontend-xc63.vercel.app/",
+                                "https://www.moodvie.com.br/",
+                                "https://moodvie.com.br/",
+                                "https://moodvie-frontend-xc63-iurihenriq.vercel.app/",
+                                "https://moodvie-spring-api.azurewebsites.net/"
                         )
                         .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
             };
