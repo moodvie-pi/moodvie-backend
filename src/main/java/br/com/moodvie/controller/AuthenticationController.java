@@ -1,7 +1,7 @@
 package br.com.moodvie.controller;
 
 import br.com.moodvie.domain.user.User;
-import br.com.moodvie.dto.LoginDTO;
+import br.com.moodvie.form.LoginForm;
 import br.com.moodvie.security.JWTtokenData;
 import br.com.moodvie.security.TokenService;
 import jakarta.validation.Valid;
@@ -22,8 +22,8 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping()
-    public ResponseEntity<?> login(@RequestBody @Valid LoginDTO loginDTO) {
-        var authenticationToken = new UsernamePasswordAuthenticationToken(loginDTO.username(), loginDTO.password());
+    public ResponseEntity<?> login(@RequestBody @Valid LoginForm loginForm) {
+        var authenticationToken = new UsernamePasswordAuthenticationToken(loginForm.username(), loginForm.password());
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
 
         var tokenJWT = tokenService.generateToken((User) authentication.getPrincipal());

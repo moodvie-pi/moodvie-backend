@@ -1,9 +1,8 @@
 package br.com.moodvie.services;
 
 import br.com.moodvie.domain.contentList.ContentList;
-import br.com.moodvie.domain.contentList.ContentListTypes;
 import br.com.moodvie.domain.user.User;
-import br.com.moodvie.dto.ContentListDTO;
+import br.com.moodvie.form.ContentListForm;
 import br.com.moodvie.mappers.ContentListMapper;
 import br.com.moodvie.repository.ContentListRepository;
 import lombok.AllArgsConstructor;
@@ -17,9 +16,9 @@ public class ContentListService {
     private final UserService userService;
     private final ContentListMapper contentListMapper;
 
-    public void create( ContentListDTO contentListDTO) {
+    public void create( ContentListForm contentListForm) {
         User user = userService.findLoggedUser();
-        ContentList contentList = contentListMapper.toEntity(contentListDTO);
+        ContentList contentList = contentListMapper.toEntity(contentListForm);
         contentList.setUser(user);
         contentListRepository.save(contentList);
     }

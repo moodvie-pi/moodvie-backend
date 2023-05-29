@@ -8,10 +8,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface MoodRepository extends JpaRepository<Mood, Long> {
     @Query("FROM Mood m WHERE m.contentType = :type AND m.user = :user AND m.moodType = :mood")
     Optional<Mood> findByTypeUserMood(Types type, User user, MoodTypes mood);
+
+    List<Mood> findByUser(User user);
 }

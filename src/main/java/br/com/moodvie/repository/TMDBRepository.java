@@ -10,13 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
 
 @Service
 public class TMDBRepository {
     @Value("${api.tmdb.key}")
     public String apiKey;
-    public TMDBResponse findTMDBrecommendations(String type, Integer contentId,Integer pageNumber,String lang){
+    public TMDBResponse findTMDBrecommendations(String type, Long contentId,Integer pageNumber,String lang){
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
@@ -30,7 +29,7 @@ public class TMDBRepository {
         return response.getBody();
     }
 
-    public Object findTMDBDetails(String type, Integer contentId, String lang){
+    public Object findTMDBDetails(String type, Long contentId, String lang){
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();

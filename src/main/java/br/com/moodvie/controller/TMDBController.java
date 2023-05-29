@@ -21,13 +21,13 @@ public class TMDBController {
 
     @ResponseBody
     @GetMapping("/recommendations/{type}/{contentId}/{pageNumber}/{lang}")
-    ResponseEntity<TMDBResponse> getTMDBRecommendation(@PathVariable String type, @PathVariable Integer contentId, @PathVariable Integer pageNumber, @PathVariable String lang){
+    ResponseEntity<TMDBResponse> getTMDBRecommendation(@PathVariable String type, @PathVariable Long contentId, @PathVariable Integer pageNumber, @PathVariable String lang){
         return new ResponseEntity<>(tmdbService.getRecommendation(type, contentId,pageNumber,lang), HttpStatus.OK);
     }
 
     @ResponseBody
     @GetMapping("/details/{type}/{contentId}/{lang}")
-    ResponseEntity<ContentDetailsTMDB> getContentDetails(@PathVariable String type, @PathVariable Integer contentId, @PathVariable String lang){
+    ResponseEntity<ContentDetailsTMDB> getContentDetails(@PathVariable String type, @PathVariable Long contentId, @PathVariable String lang){
         return new ResponseEntity<>(tmdbService.getMovieDetails(type, contentId,lang), HttpStatus.OK);
     }
 

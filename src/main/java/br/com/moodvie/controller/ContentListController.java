@@ -1,6 +1,6 @@
 package br.com.moodvie.controller;
 
-import br.com.moodvie.dto.ContentListDTO;
+import br.com.moodvie.form.ContentListForm;
 import br.com.moodvie.repository.UserRepository;
 import br.com.moodvie.services.ContentListService;
 import lombok.AllArgsConstructor;
@@ -20,8 +20,8 @@ public class ContentListController {
     private final UserRepository userRepository;
 
     @PostMapping
-    public ResponseEntity<?> saveContentList(@RequestBody ContentListDTO contentListDTO) {
-        this.contentListService.create(contentListDTO);
+    public ResponseEntity<?> saveContentList(@RequestBody ContentListForm contentListForm) {
+        this.contentListService.create(contentListForm);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

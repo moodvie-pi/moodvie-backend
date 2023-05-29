@@ -2,7 +2,6 @@ package br.com.moodvie.domain.mood;
 
 import br.com.moodvie.domain.contentList.Types;
 import br.com.moodvie.domain.user.User;
-import br.com.moodvie.dto.MoodDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
