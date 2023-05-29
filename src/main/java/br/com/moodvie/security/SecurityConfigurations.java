@@ -22,50 +22,54 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SecurityConfigurations {
     @Autowired
     private SecurityFilter securityFilter;
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.cors().disable().csrf().disable()
-                .exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_FORBIDDEN,"Não autorizado"))
+                .exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_FORBIDDEN, "Não autorizado"))
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                .requestMatchers(HttpMethod.POST,"/register").permitAll()
+                .requestMatchers(HttpMethod.POST, "/register").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
     @Bean
-    public WebMvcConfigurer corsConfigurer(){
+    public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry
                         .addMapping("/**")
-                        .allowedHeaders("Authorization", "Cache-Control", "Content-Type","Executor-Token","AuthorizationLDAP")
+                        .allowedHeaders("Authorization", "Cache-Control", "Content-Type", "Executor-Token", "AuthorizationLDAP")
                         .allowedOrigins(
-                                "http://localhost:4200/",
-                                "http://localhost:8080/",
-                                "https://moodvie-frontend-xc63-git-main-iurihenriq.vercel.app/",
-                                "https://moodvie-frontend-xc63.vercel.app/",
-                                "https://www.moodvie.com.br/",
-                                "https://moodvie.com.br/",
-                                "https://moodvie-frontend-xc63-iurihenriq.vercel.app/",
-                                "https://moodvie-spring-api.azurewebsites.net/"
+                                "http://localhost:4200",
+                                "http://localhost:8080",
+                                "https://moodvie-frontend-xc63-git-main-iurihenriq.vercel.app",
+                                "https://moodvie-frontend-xc63.vercel.app",
+                                "https://www.moodvie.com.br",
+                                "https://moodvie.com.br",
+                                "https://moodvie-frontend-xc63-iurihenriq.vercel.app",
+                                "https://moodvie-spring-api.azurewebsites.net"
                         )
                         .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS");
-            };
+            }
+
+            ;
         };
     }
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
