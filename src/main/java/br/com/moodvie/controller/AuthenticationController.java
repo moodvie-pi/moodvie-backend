@@ -30,10 +30,4 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(new JWTtokenData(tokenJWT));
     }
-
-    @GetMapping()
-    public String helloWorld() {
-        return "Hello World222222!";
-    }
-
 }
