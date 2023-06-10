@@ -13,7 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/auth/login")
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;

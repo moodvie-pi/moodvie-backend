@@ -25,14 +25,17 @@ public class SecurityConfigurations {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.cors().disable().csrf().disable()
-                .exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_FORBIDDEN, "Não autorizado"))
+        return http
+                .cors().disable()
+                .csrf().disable()
+                .exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Não autorizado"))
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
+                .securityMatcher("/api/**")
                 .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/register").permitAll()
+//                .requestMatchers(HttpMethod.POST, "/login").permitAll()
+//                .requestMatchers(HttpMethod.POST, "/register").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
@@ -48,7 +51,9 @@ public class SecurityConfigurations {
                         .allowedHeaders("Authorization", "Cache-Control", "Content-Type", "Executor-Token", "AuthorizationLDAP")
                         .allowedOrigins(
                                 "http://localhost:4200",
+                                "http://127.0.0.1:4200",
                                 "http://localhost:8080",
+                                "http://127.0.0.1:8080",
                                 "https://moodvie-frontend-xc63-git-main-iurihenriq.vercel.app",
                                 "https://moodvie-frontend-xc63.vercel.app",
                                 "https://www.moodvie.com.br",

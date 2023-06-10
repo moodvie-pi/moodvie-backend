@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/contentList")
+@RequestMapping("/api/contentList")
 @AllArgsConstructor
 public class ContentListController {
     private final ContentListService contentListService;
