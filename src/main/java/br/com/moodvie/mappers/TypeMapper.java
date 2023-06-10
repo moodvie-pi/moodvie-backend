@@ -4,7 +4,7 @@ import br.com.moodvie.domain.contentList.Types;
 import org.hibernate.query.sqm.sql.ConversionException;
 
 public class TypeMapper {
-    public Types toTypes(String type){
+    public static Types toTypes(String type){
         if(type.trim().equalsIgnoreCase("MOVIE"))
             return Types.MOVIE;
         else if(type.trim().equalsIgnoreCase("TV"))

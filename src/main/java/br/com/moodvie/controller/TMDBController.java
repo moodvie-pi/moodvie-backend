@@ -22,7 +22,7 @@ public class TMDBController {
     private final TMDBService tmdbService;
 
     @ResponseBody
-    @GetMapping("/recommendations/{type}/{contentId}/{pageNumber}/{lang}")
+    @GetMapping("/recommendations/{type}/{mood}/{pageNumber}/{lang}")
     ResponseEntity<TMDBResponse> getTMDBRecommendation(@PathVariable String type, @PathVariable MoodTypes mood, @PathVariable Integer pageNumber, @PathVariable String lang) {
         return new ResponseEntity<>(tmdbService.getRecommendation(type, mood, pageNumber, lang), HttpStatus.OK);
     }

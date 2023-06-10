@@ -25,12 +25,11 @@ import java.util.List;
 public class TMDBService {
     private final TMDBRepository tmdbRepository;
     private final MoodRepository moodRepository;
-    private final TypeMapper typeMapper;
     private final UserService userService;
 
     public TMDBResponse getRecommendation(String type, MoodTypes mood, Integer pageNumber, String lang){
         User user = userService.findLoggedUser();
-        Mood foundMood = moodRepository.findByTypeUserMood(typeMapper.toTypes(type),user,mood).orElseThrow(()-> {
+        Mood foundMood = moodRepository.findByTypeUserMood(TypeMapper.toTypes(type),user,mood).orElseThrow(()-> {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         });
         return tmdbRepository.findTMDBrecommendations(type,foundMood.getContentId(),pageNumber,lang);
