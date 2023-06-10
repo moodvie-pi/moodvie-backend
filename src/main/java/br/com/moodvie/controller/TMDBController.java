@@ -1,5 +1,6 @@
 package br.com.moodvie.controller;
 
+import br.com.moodvie.domain.mood.MoodTypes;
 import br.com.moodvie.domain.movie.ContentDetailsTMDB;
 import br.com.moodvie.domain.movie.SimplifiedContentTMDB;
 import br.com.moodvie.domain.movie.TMDBResponse;
@@ -22,8 +23,8 @@ public class TMDBController {
 
     @ResponseBody
     @GetMapping("/recommendations/{type}/{contentId}/{pageNumber}/{lang}")
-    ResponseEntity<TMDBResponse> getTMDBRecommendation(@PathVariable String type, @PathVariable Long contentId, @PathVariable Integer pageNumber, @PathVariable String lang) {
-        return new ResponseEntity<>(tmdbService.getRecommendation(type, contentId, pageNumber, lang), HttpStatus.OK);
+    ResponseEntity<TMDBResponse> getTMDBRecommendation(@PathVariable String type, @PathVariable MoodTypes mood, @PathVariable Integer pageNumber, @PathVariable String lang) {
+        return new ResponseEntity<>(tmdbService.getRecommendation(type, mood, pageNumber, lang), HttpStatus.OK);
     }
 
     @ResponseBody
