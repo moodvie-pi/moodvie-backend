@@ -8,7 +8,7 @@ public class TypeMapper {
         if(type.trim().equalsIgnoreCase("MOVIE"))
             return Types.MOVIE;
         else if(type.trim().equalsIgnoreCase("TV"))
-            return Types.TV_SHOW;
+            return Types.TV;
         else
             throw new ConversionException("falha ao converter tipo de conteúdo.");
     }

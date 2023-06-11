@@ -32,7 +32,15 @@ public class TMDBService {
         Mood foundMood = moodRepository.findByTypeUserMood(TypeMapper.toTypes(type),user,mood).orElseThrow(()-> {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         });
-        return tmdbRepository.findTMDBrecommendations(type,foundMood.getContentId(),pageNumber,lang);
+        TMDBResponse response = tmdbRepository.findTMDBrecommendations(type,foundMood.getContentId(),pageNumber,lang);
+        response.getResults().forEach((r)->{
+            if(r.getTitle() == null)
+                r.setTitle(r.getName());
+            if(r.getRelease_date() == null)
+                r.setRelease_date(r.getFirst_air_date());
+        });
+
+        return response;
     }
 
     public ContentDetailsTMDB getMovieDetails(String type, Long contentId, String lang){
@@ -48,11 +56,16 @@ public class TMDBService {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+        if(movieDetails.getTitle()==null)
+            movieDetails.setTitle(movieDetails.getName());
+        if(movieDetails.getRelease_date()==null)
+            movieDetails.setRelease_date(movieDetails.getFirst_air_date());
         return movieDetails;
     }
 
     public List<SimplifiedContentTMDB> findMovieByQuery(String type, String lang, String query){
-        return tmdbRepository.findMovieByQuery(type, lang, query).getResults().stream().map((result)-> new SimplifiedContentTMDB(
+        type = type.toLowerCase();
+        List<SimplifiedContentTMDB> response = tmdbRepository.findMovieByQuery(type, lang, query).getResults().stream().map((result)-> new SimplifiedContentTMDB(
                 result.getAdult(),
                 result.getBackdrop_path(),
                 result.getId(),
@@ -60,6 +73,15 @@ public class TMDBService {
                 result.getName(),
                 result.getRelease_date(),
                 result.getFirst_air_date())).toList();
+
+        response.forEach((r)->{
+            if(r.getTitle() == null)
+                r.setTitle(r.getName());
+            if(r.getRelease_date() == null)
+                r.setRelease_date(r.getFirst_air_date());
+        });
+
+        return response;
     }
 
 }
