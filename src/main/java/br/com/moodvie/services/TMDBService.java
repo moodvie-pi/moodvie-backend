@@ -28,6 +28,7 @@ public class TMDBService {
     private final UserService userService;
 
     public TMDBResponse getRecommendation(String type, MoodTypes mood, Integer pageNumber, String lang){
+        type = type.toLowerCase();
         User user = userService.findLoggedUser();
         Mood foundMood = moodRepository.findByTypeUserMood(TypeMapper.toTypes(type),user,mood).orElseThrow(()-> {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -44,6 +45,7 @@ public class TMDBService {
     }
 
     public ContentDetailsTMDB getMovieDetails(String type, Long contentId, String lang){
+        type = type.toLowerCase();
         Object movieDetailsObject = tmdbRepository.findTMDBDetails(type,contentId,lang);
         ContentDetailsTMDB movieDetails;
         try{
