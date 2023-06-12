@@ -1,5 +1,6 @@
 package br.com.moodvie.domain.movie;
 
+import br.com.moodvie.domain.movie.videos.VideosContent;
 import br.com.moodvie.domain.movie.watchproviders.WatchProviders;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,7 @@ public class ContentDetailsTMDB {
     Date release_date;
     Date first_air_date;
     Boolean video;
+    VideosContent videos;
     Double vote_average;
     Double vote_count;
     String imdb_id;
