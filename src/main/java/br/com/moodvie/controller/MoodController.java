@@ -1,5 +1,6 @@
 package br.com.moodvie.controller;
 
+import br.com.moodvie.domain.contentList.Types;
 import br.com.moodvie.dto.MoodDTO;
 import br.com.moodvie.form.MoodForm;
 import br.com.moodvie.services.MoodService;
@@ -23,8 +24,8 @@ public class MoodController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<MoodDTO>> findMoods(@RequestParam String lang) {
-        List<MoodDTO> moods = moodService.findMoods(lang);
+    public ResponseEntity<List<MoodDTO>> findMoods(@RequestParam String lang, @RequestParam Types contentType) {
+        List<MoodDTO> moods = moodService.findMoods(lang, contentType);
         return new ResponseEntity<>(moods, HttpStatus.OK);
     }
 }
